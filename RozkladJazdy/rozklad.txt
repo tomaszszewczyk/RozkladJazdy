@@ -1,0 +1,7 @@
+#z - do
+#godzina czas cena
+Krakow - Warszawa
+8:00 100 25
+
+Warszawa - Gdansk 
+10:00 100 30
