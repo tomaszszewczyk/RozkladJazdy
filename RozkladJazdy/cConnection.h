@@ -8,6 +8,7 @@ using namespace std;
 class cConnection
 {
 private:
+	string linia;
 	string from;
 	string to;
 	int price;
@@ -18,4 +19,3 @@ public:
 	cConnection();
 	~cConnection();
 };
-

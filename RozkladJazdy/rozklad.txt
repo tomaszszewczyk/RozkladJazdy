@@ -1,7 +1,4 @@
-#z - do
-#godzina czas cena
-Krakow - Warszawa
-8:00 100 25
-
-Warszawa - Gdansk 
-10:00 100 30
+Linia_1 .
+Krakow 180  Warszawa 240 Gdansk .
+0900 1200 1500 1800 2100 .
+end

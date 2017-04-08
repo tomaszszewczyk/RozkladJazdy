@@ -9,7 +9,7 @@ using namespace std;
 class cSchedule
 {
 private:
-	map<string, vector<cConnection>> miasta;
+	map<string, vector<cConnection> > miasta;
 public:
 	cSchedule();
 	~cSchedule();
