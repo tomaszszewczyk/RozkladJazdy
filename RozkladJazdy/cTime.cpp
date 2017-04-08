@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "cTime.h"
 
 cTime::cTime(unsigned inhour, unsigned inminute)
