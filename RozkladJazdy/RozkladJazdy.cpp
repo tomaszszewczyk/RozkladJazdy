@@ -15,16 +15,31 @@ int main()
 		file.open("rozklad.txt");
 		if(file.is_open())
 		{
-			bool conti = true;
-			while(conti)
+			//Iterowanie po liniach
+			bool koniec_linii = false;
+			while(!koniec_linii)
 			{
-				string input;
-				file >> input;
-				cout << "Linia: " << input << endl;
+				//Wczytanie nazwy linii
+				string linia;
+				file >> linia;
+				cout << "Linia: " << linia << endl;
 
+				//Sprawdzenie poprawnosci skladni
+				string input;
 				file >> input;
 				if(input != ".")
 					throw(string("Blad skladni"));
+
+				//Odczytywanie trasy
+				string from, to;
+				int triptime, price;
+				bool koniec_miast = false;
+				file >> to;
+				while(!koniec_miast)
+				{
+					from = to;
+					file >> triptime >> price >> to;
+				}
 
 			}
 		}
