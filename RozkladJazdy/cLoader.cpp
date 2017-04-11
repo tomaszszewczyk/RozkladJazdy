@@ -87,7 +87,7 @@ cSchedule cLoader::loadFromFile(string filename)
 
       //Dane wczytane mozna zaladowac do rozkladu
       //Do kazdego miasta dodajemy znalezione polacznia
-
+      //TODO - tu skonczylem
     }
   }
   //Jesli nie udalo sie otworzyc pliku
