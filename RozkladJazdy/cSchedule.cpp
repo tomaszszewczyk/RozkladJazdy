@@ -1,7 +1,7 @@
 #include "cSchedule.h"
 
 
-cSchedule::cSchedule()
+cSchedule::cSchedule() : map<string, map<string, vector<cConnection> > >()
 {
 }
 

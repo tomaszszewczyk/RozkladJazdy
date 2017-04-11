@@ -1,4 +1,11 @@
 Linia_1 .
-Krakow 180 20  Warszawa 240 30 Gdansk .
+Krakow Warszawa Gdansk .
+180 240 .
+20 30 .
+0900 1200 1500 1800 2100 .
+Linia_2 .
+Gdansk Warszawa Krakow .
+240 180 .
+35 25 .
 0900 1200 1500 1800 2100 .
 end

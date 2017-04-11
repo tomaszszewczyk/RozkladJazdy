@@ -18,4 +18,6 @@ private:
 public:
 	cConnection();
 	~cConnection();
+  string getFrom() {return from;}
+	string getTo() {return to;}
 };

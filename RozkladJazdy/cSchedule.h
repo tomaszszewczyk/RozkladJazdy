@@ -6,12 +6,14 @@
 
 using namespace std;
 
-class cSchedule
+class cSchedule : public map<string, map<string, vector<cConnection> > >
 {
 private:
-	map<string, vector<cConnection> > miasta;
 public:
 	cSchedule();
 	~cSchedule();
+	void addConnection(cConnection polaczenie)
+	{
+		(*this)[polaczenie.getFrom()][polaczenie.getTo()].push_back(polaczenie);
+	}
 };
-
