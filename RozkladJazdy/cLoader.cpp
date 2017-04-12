@@ -87,8 +87,28 @@ cSchedule cLoader::loadFromFile(string filename)
 
       //Dane wczytane mozna zaladowac do rozkladu
       //Do kazdego miasta dodajemy znalezione polacznia
-      //TODO - tu skonczylem
+      for(int i = 0; i < miasta.size() -1; i++) //Dla kazdej pary miast
+      {
+        for(int x = 0; x < starty.size(); x++)  //Dla kazdej godziny odjazdu
+        {
+          rozklad.addConnection(cConnection(linia, miasta[i], miasta[i+1], ceny[i], czasy[i], starty[x]));
+          starty[x].delay(czasy[i]);
+        }
+      }
     }
+
+    //Po wczytaniu
+    cout << endl << "Wczytywanie rozkladu zakonczone powodzeniem!" << endl;
+    cout << endl << "Wyszukaj polaczenie." << endl << "Z: ";
+
+    string skad, dokad;
+
+    cin >> skad;
+    cout << "Do: ";
+    cin >> dokad;
+
+    for(int i = 0; i < rozklad[skad][dokad].size(); i++)
+      cout << rozklad[skad][dokad][i] << endl;
   }
   //Jesli nie udalo sie otworzyc pliku
   else

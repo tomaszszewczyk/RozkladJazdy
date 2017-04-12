@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <iostream>
 #include "cTime.h"
 
 using namespace std;
@@ -33,4 +34,5 @@ public:
 	~cConnection();
   string getFrom() {return from;}
 	string getTo() {return to;}
+	friend ostream& operator<<(ostream& out, cConnection dana);
 };

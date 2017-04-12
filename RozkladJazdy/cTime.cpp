@@ -51,3 +51,16 @@ ostream& operator<<(ostream& out, cTime dana)
 	out<<dana.toString();
 	return out;
 }
+
+void cTime::delay(int minuty)
+{
+	minute += minuty%60;
+	if(minute >= 60)
+	{
+		minute = 0;
+		hour++;
+	}
+	hour += minuty/60;
+	if(hour >= 24)
+		hour = 0;
+}
