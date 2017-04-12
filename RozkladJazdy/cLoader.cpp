@@ -9,6 +9,7 @@ cSchedule cLoader::loadFromFile(string filename)
   //Wczytywanie z pliku
   if(file.is_open())
   {
+    int connectionQty = 0;
     //Iterowanie po liniach
     bool koniec_linii = false;
     while(!koniec_linii)
@@ -16,9 +17,8 @@ cSchedule cLoader::loadFromFile(string filename)
       //Wczytanie nazwy linii
       string linia;
       file >> linia;
-      cout << "Linia: " << linia << endl;
 
-      //Warunek koncza
+      //Warunek konca
       if(linia == "end")
       {
         koniec_linii = true;
@@ -52,7 +52,6 @@ cSchedule cLoader::loadFromFile(string filename)
           int tmp;
           sscanf(data.c_str(), "%d", &tmp);
           czasy.push_back(tmp);
-          cout << "czas: " << tmp << endl;
         }
       }
 
@@ -67,7 +66,6 @@ cSchedule cLoader::loadFromFile(string filename)
           int tmp;
           sscanf(data.c_str(), "%d", &tmp);
           ceny.push_back(tmp);
-          cout << "ceny: " << tmp << endl;
         }
       }
 
@@ -81,16 +79,17 @@ cSchedule cLoader::loadFromFile(string filename)
         {
           cTime tmp(data);
           starty.push_back(tmp);
-          cout << "starty: " << tmp << endl;
         }
       }
 
       //Dane wczytane mozna zaladowac do rozkladu
       //Do kazdego miasta dodajemy znalezione polacznia
+
       for(int i = 0; i < miasta.size() -1; i++) //Dla kazdej pary miast
       {
         for(int x = 0; x < starty.size(); x++)  //Dla kazdej godziny odjazdu
         {
+          connectionQty++;
           rozklad.addConnection(cConnection(linia, miasta[i], miasta[i+1], ceny[i], czasy[i], starty[x]));
           starty[x].delay(czasy[i]);
         }
@@ -98,8 +97,8 @@ cSchedule cLoader::loadFromFile(string filename)
     }
 
     //Po wczytaniu
-    cout << endl << "Wczytywanie rozkladu zakonczone powodzeniem!" << endl;
-    cout << endl << "Wyszukaj polaczenie." << endl << "Z: ";
+    cout << endl << "Wczytano: " << connectionQty << " polaczen." << endl;
+    cout << endl << "Wypisz polaczenia" << endl << "Z: ";
 
     string skad, dokad;
 

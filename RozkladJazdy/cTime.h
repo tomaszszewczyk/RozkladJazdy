@@ -16,4 +16,10 @@ public:
 	string toString();
 	friend ostream& operator<<(ostream& out, cTime dana);
 	void delay(int minuty);
+	cTime operator+(int min)
+	{
+		cTime tmp = (*this);
+		tmp.delay(min);
+		return tmp;
+	}
 };
