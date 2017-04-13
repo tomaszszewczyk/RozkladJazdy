@@ -17,7 +17,7 @@ public:
 	void setTo(unsigned inhour, unsigned inminute);
 	string toString();
 	friend ostream& operator<<(ostream& out, cTime dana);
-	void delay(int minuty);
+	void delay(int min);
 	cTime operator+(int min);
 	bool operator<(cTime input);
 };

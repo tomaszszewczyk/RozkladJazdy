@@ -4,12 +4,15 @@
 #include "cConnection.h"
 #include "cSchedule.h"
 #include "cTime.h"
+#include "cTrip.h"
+#include "cConnection.h"
+#include "debug.h"
 
 using namespace std;
 
 class cSearcher
 {
 public:
-  enum conClass {fast, cheap};
-  static vector<cConnection> searcher(cSchedule rozklad, string from, string to, conClass type);
+  enum conClass {fast, cheap, any};
+  static cTrip searcher(cSchedule schedule, cTime now, string from, string to, conClass type, vector<string> visited = vector<string>());
 };

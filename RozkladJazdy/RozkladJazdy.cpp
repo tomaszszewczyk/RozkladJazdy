@@ -10,6 +10,7 @@
 #include "cSearcher.h"
 #include "cTime.h"
 #include "debug.h"
+#include "cTrip.h"
 
 using namespace std;
 
@@ -27,12 +28,18 @@ int main()
 			//Wczytywanie danych do wyszukiwania
 	    cout << endl << "Wyszukaj polaczenia." << endl << "Z: ";
 
-	    string from, to;
+	    string from, to, now;
 	    cin >> from;
 	    cout << "Do: ";
 	    cin >> to;
+			cout << "Od godziny: ";
+			cin >> now;
 
-			cSearcher::searcher(schedule, from, to, cSearcher::fast);
+			cTrip fastResult = cSearcher::searcher(schedule, cTime(now), from, to, cSearcher::fast);
+			cTrip cheapResult = cSearcher::searcher(schedule, cTime(now), from, to, cSearcher::fast);
+
+			cout << "Najszybsza trasa:" << endl << fastResult << endl;
+			cout << "Najtansza trasa:" << endl << cheapResult << endl;
 		}
 	}
 	//Bezpieczne zakoczenie programu + wypisanie bledow

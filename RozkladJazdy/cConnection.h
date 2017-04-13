@@ -40,6 +40,9 @@ public:
 	//Podstawowe gettery
   string getFrom() {return from;}
 	string getTo() {return to;}
+	cTime getStart() {return time;}
+	int getTripTime() {return tripTime;}
+	int getPrice() {return price;}
 
 	//wypisywanie polaczenia
 	friend ostream& operator<<(ostream& out, cConnection dana)
