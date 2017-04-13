@@ -1,5 +1,5 @@
-// RozkladJazdy.cpp : Defines the entry point for the console application.
-//
+// Program rozklad jazdy.
+// Zaliczenie MiTP 2017, Tomasz Szewczyk
 
 #include <string>
 #include <iostream>
@@ -15,23 +15,27 @@ using namespace std;
 
 int main()
 {
+	//Glowny blok programu
 	try
 	{
-		cSchedule rozklad = cLoader::loadFromFile("rozklad.txt");
+		//Wczytywanie danych z pliku
+		cSchedule schedule = cLoader::loadFromFile("rozklad.txt");
 
+		//Petla glowna
 		while(1)
 		{
+			//Wczytywanie danych do wyszukiwania
 	    cout << endl << "Wyszukaj polaczenia." << endl << "Z: ";
 
 	    string from, to;
-
 	    cin >> from;
 	    cout << "Do: ";
 	    cin >> to;
 
-			cSearcher::searcher(rozklad, from, to, cSearcher::fast);
+			cSearcher::searcher(schedule, from, to, cSearcher::fast);
 		}
 	}
+	//Bezpieczne zakoczenie programu + wypisanie bledow
 	catch (string error)
 	{
 		cout << error << endl;

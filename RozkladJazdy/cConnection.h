@@ -1,3 +1,6 @@
+//Klasa opisujaca jedno polacznie
+// Zaliczenie MiTP 2017, Tomasz Szewczyk
+
 #pragma once
 #include <string>
 #include <iostream>
@@ -5,19 +8,20 @@
 
 using namespace std;
 
-//Klasa opisujaca jedno polaczenie
+//Klasa cConnecion
 class cConnection
 {
 private:
-	string lineName;
-	string from;
-	string to;
-	int price;
-	int tripTime;
-	cTime time;
+	string lineName;	//Nazwa linii
+	string from;			//Miasto wyjazdu
+	string to;				//Miato docelowe
+	int price;				//Cena
+	int tripTime;			//Czas podrozy
+	cTime time;				//Godzina wyjazdu
 
 public:
-	cConnection();
+	//Kontruktory
+	cConnection() {}
 	cConnection(string aLineName,
 							string aFrom,
 							string aTo,
@@ -31,8 +35,17 @@ public:
 															tripTime(aTripTime),
 															time(aTime) {}
 
-	~cConnection();
+	~cConnection() {}
+
+	//Podstawowe gettery
   string getFrom() {return from;}
 	string getTo() {return to;}
-	friend ostream& operator<<(ostream& out, cConnection dana);
+
+	//wypisywanie polaczenia
+	friend ostream& operator<<(ostream& out, cConnection dana)
+	{
+	  cout << dana.from << " (" << dana.time << ") -> " << dana.to << " (" << dana.time+dana.tripTime << ")";
+	  return out;
+	}
+	bool operator<(cConnection input) { return time < input.time; }
 };

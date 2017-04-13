@@ -1,10 +1,6 @@
 #include "cTime.h"
 
-cTime::cTime(unsigned inhour, unsigned inminute)
-{
-	setTo(inhour, inminute);
-}
-
+//Zamiana stringa na cTime
 cTime::cTime(string input)
 {
 	string hh = input.substr(0,2);
@@ -20,7 +16,7 @@ cTime::cTime(string input)
 	setTo(inhour, inminute);
 }
 
-
+//Ustawianie cTime
 void cTime::setTo(unsigned inhour, unsigned inminute)
 {
 		if (inhour < 24 && inminute < 60)
@@ -35,10 +31,11 @@ void cTime::setTo(unsigned inhour, unsigned inminute)
 			error += hour;
 			error += " Minute:";
 			error += minute;
-			throw(error);
+			throw(error);	//Wyjatek jesli poza zakresem
 		}
 }
 
+//Wypisanie cTime
 string cTime::toString()
 {
 	char wynik[6];
@@ -46,21 +43,41 @@ string cTime::toString()
 	return string(wynik);
 }
 
+//Operator wypisania cTime
 ostream& operator<<(ostream& out, cTime dana)
 {
 	out<<dana.toString();
 	return out;
 }
 
-void cTime::delay(int minuty)
+//Dodanie czasu
+void cTime::delay(int min)
 {
-	minute += minuty%60;
+	minute += min%60;
 	if(minute >= 60)
 	{
 		minute = 0;
 		hour++;
 	}
-	hour += minuty/60;
+	hour += min/60;
 	if(hour >= 24)
 		hour = 0;
+}
+
+//Operator dodawnia
+cTime cTime::operator+(int min)
+{
+	cTime tmp = (*this);
+	tmp.delay(min);
+	return tmp;
+}
+
+//Operator porownania potrzebny do sortowania
+bool cTime::operator<(cTime dana)
+{
+	if(dana.hour <= hour)
+		return false;
+	if(dana.hour == hour && dana.minute <= minute)
+		return false;
+	return true;
 }

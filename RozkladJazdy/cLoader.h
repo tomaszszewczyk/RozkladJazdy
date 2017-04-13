@@ -1,4 +1,4 @@
-//Ladowanie z pliku
+//Klasa statyczna realizujaca ladowanie danych z pliku
 #pragma once
 
 #include <string>

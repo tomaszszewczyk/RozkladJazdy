@@ -1,27 +1,30 @@
 #include "cLoader.h"
 
+//Ladowanie danych z pliku
 cSchedule cLoader::loadFromFile(string filename)
 {
-  cSchedule rozklad;
+  //Zmienna na wynik
+  cSchedule schedule;
 
+  //Wczytywanie z pliku
   ifstream file;
   file.open(filename.c_str());
-  //Wczytywanie z pliku
   if(file.is_open())
   {
+    //Licznik ilosc polaczen
     int connectionQty = 0;
     //Iterowanie po liniach
-    bool koniec_linii = false;
-    while(!koniec_linii)
+    bool linesEnd = false;
+    while(!linesEnd)
     {
       //Wczytanie nazwy linii
-      string linia;
-      file >> linia;
+      string line;
+      file >> line;
 
       //Warunek konca
-      if(linia == "end")
+      if(line == "end")
       {
-        koniec_linii = true;
+        linesEnd = true;
         continue;
       }
 
@@ -32,17 +35,17 @@ cSchedule cLoader::loadFromFile(string filename)
         throw(string("Blad skladni"));
 
       //Odczytywanie miast
-      vector<string> miasta;
+      vector<string> cities;
       string data;
       while(data != ".")
       {
           file >> data;
           if(data != ".")
-            miasta.push_back(data);
+            cities.push_back(data);
       }
 
       //Odczytywanie czasu przejazdu
-      vector<int> czasy;
+      vector<int> tripTimes;
       data = "";
       while(data != ".")
       {
@@ -51,12 +54,12 @@ cSchedule cLoader::loadFromFile(string filename)
         {
           int tmp;
           sscanf(data.c_str(), "%d", &tmp);
-          czasy.push_back(tmp);
+          tripTimes.push_back(tmp);
         }
       }
 
       //Odczytywanie ceny przejazdu
-      vector<int> ceny;
+      vector<int> prices;
       data = "";
       while(data != ".")
       {
@@ -65,12 +68,12 @@ cSchedule cLoader::loadFromFile(string filename)
         {
           int tmp;
           sscanf(data.c_str(), "%d", &tmp);
-          ceny.push_back(tmp);
+          prices.push_back(tmp);
         }
       }
 
       //Odczytywanie godzin startu
-      vector<cTime> starty;
+      vector<cTime> departureTimes;
       data = "";
       while(data != ".")
       {
@@ -78,20 +81,19 @@ cSchedule cLoader::loadFromFile(string filename)
         if(data != ".")
         {
           cTime tmp(data);
-          starty.push_back(tmp);
+          departureTimes.push_back(tmp);
         }
       }
 
-      //Dane wczytane mozna zaladowac do rozkladu
+      //Dane wczytane mozna zaladowac do scheduleu
       //Do kazdego miasta dodajemy znalezione polacznia
-
-      for(int i = 0; i < miasta.size() -1; i++) //Dla kazdej pary miast
+      for(int i = 0; i < cities.size() -1; i++) //Dla kazdej pary miast
       {
-        for(int x = 0; x < starty.size(); x++)  //Dla kazdej godziny odjazdu
+        for(int x = 0; x < departureTimes.size(); x++)  //Dla kazdej godziny odjazdu
         {
-          connectionQty++;
-          rozklad.addConnection(cConnection(linia, miasta[i], miasta[i+1], ceny[i], czasy[i], starty[x]));
-          starty[x].delay(czasy[i]);
+          connectionQty++; //Zliczamy polaczenia
+          schedule.addConnection(cConnection(line, cities[i], cities[i+1], prices[i], tripTimes[i], departureTimes[x]));
+          departureTimes[x].delay(tripTimes[i]);
         }
       }
     }
@@ -104,5 +106,5 @@ cSchedule cLoader::loadFromFile(string filename)
   else
     throw(string("Niepowodzenie otwierania pliku"));
 
-  return rozklad;
+  return schedule;
 }
