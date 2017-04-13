@@ -97,17 +97,8 @@ cSchedule cLoader::loadFromFile(string filename)
     }
 
     //Po wczytaniu
-    cout << endl << "Wczytano: " << connectionQty << " polaczen." << endl;
-    cout << endl << "Wypisz polaczenia" << endl << "Z: ";
-
-    string skad, dokad;
-
-    cin >> skad;
-    cout << "Do: ";
-    cin >> dokad;
-
-    for(int i = 0; i < rozklad[skad][dokad].size(); i++)
-      cout << rozklad[skad][dokad][i] << endl;
+    cout << "Wczytano: " << connectionQty << " polaczen." << endl;
+    cout << "Zakonczona prace loadera." << endl;
   }
   //Jesli nie udalo sie otworzyc pliku
   else
