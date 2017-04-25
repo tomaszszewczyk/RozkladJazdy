@@ -12,6 +12,10 @@ private:
   int price;
 public:
   cTrip() : tripTime(0), price(0) {}
+  cTrip(cConnection aConnection) : tripTime(0), price(0)
+  {
+    add(aConnection);
+  }
   void add(cConnection aConnection)
   {
     (*this).push_back(aConnection);
@@ -20,6 +24,9 @@ public:
   }
   void add(cTrip aTrip)
   {
+    if(aTrip.size() == 0)
+      return; //ignore
+
     (*this).insert((*this).end(), aTrip.begin(), aTrip.end());
     tripTime += aTrip.tripTime;
     price += aTrip.price;
@@ -32,7 +39,7 @@ public:
     out << "Cena: " << data.price << endl;
     out << "Trasa: " << data[0].getFrom();
     for(int i = 0; i < data.size(); i++)
-      cout << " -> " << data[i].getTo();
+      cout << " [" << data[i].getStart() << "] -> [" << data[i].getStart() + data[i].getTripTime() << "] " << data[i].getTo();
     return out;
   }
 };

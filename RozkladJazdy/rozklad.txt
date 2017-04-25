@@ -8,4 +8,9 @@ Gdansk Warszawa Krakow .
 240 180 .
 35 25 .
 0900 1200 1500 1800 2100 .
+Linia_3 .
+Bialystok Warszawa Poznan .
+100 300 .
+10 15 .
+0000 0600 1200 1800 2200 .
 end

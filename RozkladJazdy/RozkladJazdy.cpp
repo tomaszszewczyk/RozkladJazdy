@@ -35,6 +35,9 @@ int main()
 			cout << "Od godziny: ";
 			cin >> now;
 
+			//cTrip fastResult = schedule.search(cTime(now), from, to, cSchedule::fast);
+			//cTrip cheapResult = schedule.search(cTime(now), from, to, cSchedule::cheap);
+
 			cTrip fastResult = cSearcher::searcher(schedule, cTime(now), from, to, cSearcher::fast);
 			cTrip cheapResult = cSearcher::searcher(schedule, cTime(now), from, to, cSearcher::fast);
 

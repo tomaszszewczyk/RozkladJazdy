@@ -3,7 +3,10 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include <string>
 #include "cConnection.h"
+#include "cTrip.h"
+#include "debug.h"
 
 using namespace std;
 
@@ -20,4 +23,5 @@ public:
 		sort((*this)[polaczenie.getFrom()][polaczenie.getTo()].begin(),
 				 (*this)[polaczenie.getFrom()][polaczenie.getTo()].end());
 	}
+	vector<cConnection> getConnectionsFrom(string from);
 };
